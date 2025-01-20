@@ -37,6 +37,20 @@ public class Radio {
 
     public int currentVolume;
 
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume > 100) {
+            return;
+        }
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
+    }
+
     public void increaseVolume() {
         if (currentVolume == 100) {
             return;
