@@ -1,4 +1,5 @@
 package ru.netology;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -55,14 +56,14 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSwitchToNext() {
+    public void shouldSwitchToNextIfNearToLimit() {
         Radio station = new Radio();
 
-        station.setCurrentStationNumber(4);
+        station.setCurrentStationNumber(8);
 
         station.next();
 
-        int expected = 5;
+        int expected = 9;
         int actual = station.getCurrentStationNumber();
 
         Assertions.assertEquals(expected, actual);
@@ -83,14 +84,14 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSwitchToPrev() {
+    public void shouldSwitchToPrevIfNearToLimit() {
         Radio station = new Radio();
 
-        station.setCurrentStationNumber(4);
+        station.setCurrentStationNumber(1);
 
         station.prev();
 
-        int expected = 3;
+        int expected = 0;
         int actual = station.getCurrentStationNumber();
 
         Assertions.assertEquals(expected, actual);
@@ -124,11 +125,11 @@ public class RadioTest {
     public void shouldIncreaseVolume() {
         Radio vol = new Radio();
 
-        vol.setCurrentVolume(50);
+        vol.setCurrentVolume(99);
 
         vol.increaseVolume();
 
-        int expected = 51;
+        int expected = 100;
         int actual = vol.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -152,11 +153,11 @@ public class RadioTest {
     public void shouldTurnDownVolume() {
         Radio vol = new Radio();
 
-        vol.setCurrentVolume(50);
+        vol.setCurrentVolume(1);
 
         vol.turnDownVolume();
 
-        int expected = 49;
+        int expected = 0;
         int actual = vol.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);

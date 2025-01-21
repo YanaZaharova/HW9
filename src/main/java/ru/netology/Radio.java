@@ -1,7 +1,10 @@
 package ru.netology;
 
 public class Radio {
-    public int currentStationNumber;
+
+    private int currentStationNumber;
+
+    private int currentVolume;
 
     public int getCurrentStationNumber() {
         return currentStationNumber;
@@ -18,24 +21,20 @@ public class Radio {
     }
 
     public void next() {
-        if (currentStationNumber < 9) {
-            currentStationNumber = currentStationNumber + 1;
-        }
         if (currentStationNumber == 9) {
             currentStationNumber = 0;
+            return;
         }
+        currentStationNumber = currentStationNumber + 1;
     }
 
     public void prev() {
-        if (currentStationNumber > 0) {
-            currentStationNumber = currentStationNumber - 1;
-        }
         if (currentStationNumber == 0) {
             currentStationNumber = 9;
+            return;
         }
+        currentStationNumber = currentStationNumber - 1;
     }
-
-    public int currentVolume;
 
     public int getCurrentVolume() {
         return currentVolume;
