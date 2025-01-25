@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class RadioTest {
+    Radio station = new Radio(15);
+    Radio vol = new Radio();
 
     @Test
     public void shouldSetStationNumber() {
-        Radio station = new Radio();
-
         station.setCurrentStationNumber(7);
 
         int expected = 7;
@@ -19,9 +19,7 @@ public class RadioTest {
 
     @Test
     public void shouldNotSetSNAboveMax() {
-        Radio station = new Radio();
-
-        station.setCurrentStationNumber(10);
+        station.setCurrentStationNumber(15);
 
         int expected = 0;
         int actual = station.getCurrentStationNumber();
@@ -31,8 +29,6 @@ public class RadioTest {
 
     @Test
     public void shouldNotSetSNBelowMin() {
-        Radio station = new Radio();
-
         station.setCurrentStationNumber(-1);
 
         int expected = 0;
@@ -43,9 +39,7 @@ public class RadioTest {
 
     @Test
     public void shouldNotSwitchToNextAboveMax() {
-        Radio station = new Radio();
-
-        station.setCurrentStationNumber(9);
+        station.setCurrentStationNumber(14);
 
         station.next();
 
@@ -57,13 +51,11 @@ public class RadioTest {
 
     @Test
     public void shouldSwitchToNextIfNearToLimit() {
-        Radio station = new Radio();
-
-        station.setCurrentStationNumber(8);
+        station.setCurrentStationNumber(13);
 
         station.next();
 
-        int expected = 9;
+        int expected = 14;
         int actual = station.getCurrentStationNumber();
 
         Assertions.assertEquals(expected, actual);
@@ -71,13 +63,11 @@ public class RadioTest {
 
     @Test
     public void shouldNotSwitchToPrevIfMin() {
-        Radio station = new Radio();
-
         station.setCurrentStationNumber(0);
 
         station.prev();
 
-        int expected = 9;
+        int expected = station.getMaxStationNumber();
         int actual = station.getCurrentStationNumber();
 
         Assertions.assertEquals(expected, actual);
@@ -85,8 +75,6 @@ public class RadioTest {
 
     @Test
     public void shouldSwitchToPrevIfNearToLimit() {
-        Radio station = new Radio();
-
         station.setCurrentStationNumber(1);
 
         station.prev();
@@ -99,8 +87,6 @@ public class RadioTest {
 
     @Test
     public void shouldNotSetVolumeAboveMax() {
-        Radio vol = new Radio();
-
         vol.setCurrentVolume(101);
 
         int expected = 0;
@@ -111,8 +97,6 @@ public class RadioTest {
 
     @Test
     public void shouldNotSetVolumeBelowMin() {
-        Radio vol = new Radio();
-
         vol.setCurrentVolume(-1);
 
         int expected = 0;
@@ -123,8 +107,6 @@ public class RadioTest {
 
     @Test
     public void shouldIncreaseVolume() {
-        Radio vol = new Radio();
-
         vol.setCurrentVolume(99);
 
         vol.increaseVolume();
@@ -137,8 +119,6 @@ public class RadioTest {
 
     @Test
     public void shouldNotIncreaseAboveMax() {
-        Radio vol = new Radio();
-
         vol.setCurrentVolume(100);
 
         vol.increaseVolume();
@@ -151,8 +131,6 @@ public class RadioTest {
 
     @Test
     public void shouldTurnDownVolume() {
-        Radio vol = new Radio();
-
         vol.setCurrentVolume(1);
 
         vol.turnDownVolume();
@@ -165,8 +143,6 @@ public class RadioTest {
 
     @Test
     public void shouldNotTurnDownIfMin() {
-        Radio vol = new Radio();
-
         vol.setCurrentVolume(0);
 
         vol.turnDownVolume();
